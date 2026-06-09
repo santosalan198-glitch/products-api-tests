@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-current.dtd">
+<suite name="Products API Tests">
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+
+    <test name="API Tests">
+        <classes>
+            <class name="com.alan.qa.tests.AuthTests"/>
+            <class name="com.alan.qa.tests.ProductTests"/>
+            <class name="com.alan.qa.tests.ProductCreateTests"/>
+            <class name="com.alan.qa.tests.ProductUpdateTests"/>
+            <class name="com.alan.qa.tests.ProductDeleteTests"/>
+        </classes>
+    </test>
+</suite>
