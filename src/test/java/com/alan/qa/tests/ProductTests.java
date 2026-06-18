@@ -26,7 +26,7 @@ public class ProductTests extends BaseTest {
                 .path("total");
 
         Assert.assertTrue(totalProducts > 0, "Debería haber productos");
-        System.out.println("✅ Total productos: " + totalProducts);
+        System.out.println("[PASS] Total productos: " + totalProducts);
     }
 
     @Feature("Products")
@@ -34,7 +34,7 @@ public class ProductTests extends BaseTest {
     @Description("Obtener un producto específico por su ID")
     @Test(description = "Obtener producto por ID")
     public void testGetProductById() {
-        int productId = 1;
+        int productId = getFirstProductId();
 
         String title = given()
                 .when()
@@ -45,7 +45,7 @@ public class ProductTests extends BaseTest {
                 .path("title");
 
         Assert.assertNotNull(title, "Producto debería tener título");
-        System.out.println("✅ Producto encontrado: " + title);
+        System.out.println("[PASS] Producto encontrado: " + title);
     }
 
     @Feature("Products")
@@ -59,7 +59,7 @@ public class ProductTests extends BaseTest {
                 .then()
                 .statusCode(404);
 
-        System.out.println("✅ Producto no encontrado (404)");
+        System.out.println("[PASS] Producto no encontrado (404)");
     }
 
     @Feature("Products")
@@ -67,15 +67,17 @@ public class ProductTests extends BaseTest {
     @Description("Validar estructura completa y tipos de datos del producto")
     @Test(description = "Validar estructura de producto")
     public void testProductStructure() {
+        int productId = getFirstProductId();
+
         Number price = given()
                 .when()
-                .get(ApiConstants.PRODUCTS_ENDPOINT + "/1")
+                .get(ApiConstants.PRODUCTS_ENDPOINT + "/" + productId)
                 .then()
                 .statusCode(200)
                 .extract()
                 .path("price");
 
         Assert.assertTrue(price.doubleValue() > 0, "Price debe ser mayor a 0");
-        System.out.println("✅ Estructura de producto validada");
+        System.out.println("[PASS] Estructura de producto validada");
     }
 }

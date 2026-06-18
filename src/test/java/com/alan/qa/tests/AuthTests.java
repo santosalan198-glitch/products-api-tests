@@ -44,7 +44,7 @@ public class AuthTests extends BaseTest {
         String username = response.path("username");
         Assert.assertEquals(username, "emilys", "Username incorrecto");
 
-        System.out.println("✅ Login exitoso. Token: " + token.substring(0, 20) + "...");
+        System.out.println("[PASS] Login exitoso. Token: " + token.substring(0, 20) + "...");
     }
 
     @Feature("Authentication")
@@ -65,7 +65,7 @@ public class AuthTests extends BaseTest {
                 .then()
                 .statusCode(400);
 
-        System.out.println("✅ Login rechazado con credenciales incorrectas");
+        System.out.println("[PASS] Login rechazado con credenciales incorrectas");
     }
 
     @Feature("Authentication")
@@ -85,6 +85,7 @@ public class AuthTests extends BaseTest {
                 .then()
                 .statusCode(400);
 
-        System.out.println("✅ Login rechazado sin password");
+        System.out.println("[PASS] Login rechazado sin password");
     }
 }
+

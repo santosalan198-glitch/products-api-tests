@@ -12,6 +12,8 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <!-- Ensure Java sources are read as UTF-8 so emojis and accented characters compile correctly -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -60,12 +62,25 @@
                 </configuration>
             </plugin>
 
+            <!-- Configure compiler plugin to use UTF-8 encoding -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.13.0</version>
                 <configuration>
-                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+                    <!-- Use the project's `allure-results` folder (where your JSON files currently live) -->
+                    <resultsDirectory>${project.basedir}/allure-results</resultsDirectory>
                 </configuration>
             </plugin>
         </plugins>

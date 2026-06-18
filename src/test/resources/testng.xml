@@ -12,6 +12,8 @@
             <class name="com.alan.qa.tests.ProductCreateTests"/>
             <class name="com.alan.qa.tests.ProductUpdateTests"/>
             <class name="com.alan.qa.tests.ProductDeleteTests"/>
+            <class name="com.alan.qa.tests.ValidationTests"/>
+            <class name="com.alan.qa.tests.PerformanceTests"/>
         </classes>
     </test>
 </suite>

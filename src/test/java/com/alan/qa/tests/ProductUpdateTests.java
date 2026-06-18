@@ -21,7 +21,7 @@ public class ProductUpdateTests extends BaseTest {
     @Test(description = "Actualizar precio de producto",
             dependsOnMethods = "com.alan.qa.tests.AuthTests.testLoginSuccessfully")
     public void testUpdateProductPrice() {
-        int productId = 1;
+        int productId = getFirstProductId();
         String requestBody = "{\n" +
                 "    \"price\": 1299.99\n" +
                 "}";
@@ -42,7 +42,7 @@ public class ProductUpdateTests extends BaseTest {
         Number updatedPrice = response.path("price");
         Assert.assertEquals(updatedPrice.doubleValue(), 1299.99, 0.01, "Precio no actualizado");
 
-        System.out.println("✅ Precio actualizado a: " + updatedPrice);
+        System.out.println("[PASS] Precio actualizado a: " + updatedPrice);
     }
 
     @Feature("Products")
@@ -54,14 +54,16 @@ public class ProductUpdateTests extends BaseTest {
                 "    \"price\": 500\n" +
                 "}";
 
+        int productId = getFirstProductId();
+
         given()
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .put(ApiConstants.PRODUCTS_ENDPOINT + "/1")
+                .put(ApiConstants.PRODUCTS_ENDPOINT + "/" + productId)
                 .then()
                 .statusCode(401);
 
-        System.out.println("✅ Actualización denegada sin token");
+        System.out.println("[PASS] Actualización denegada sin token");
     }
 }

@@ -42,7 +42,7 @@ public class ProductDeleteTests extends BaseTest {
 
         Assert.assertTrue(message.contains("eliminado"), "Mensaje de eliminación incorrecto");
 
-        System.out.println("✅ Producto ID " + productId + " eliminado correctamente");
+        System.out.println("[PASS] Producto ID " + productId + " eliminado correctamente");
     }
 
     @Feature("Products")
@@ -50,13 +50,15 @@ public class ProductDeleteTests extends BaseTest {
     @Description("Validar que eliminar sin token es rechazado")
     @Test(description = "Eliminar producto sin token (debe fallar)")
     public void testDeleteProductWithoutToken() {
+        int productId = getFirstProductId();
+
         given()
                 .when()
-                .delete(ApiConstants.PRODUCTS_ENDPOINT + "/1")
+                .delete(ApiConstants.PRODUCTS_ENDPOINT + "/" + productId)
                 .then()
                 .statusCode(401);
 
-        System.out.println("✅ Eliminación denegada sin token");
+        System.out.println("[PASS] Eliminación denegada sin token");
     }
 
     @Feature("Products")
@@ -73,6 +75,6 @@ public class ProductDeleteTests extends BaseTest {
                 .then()
                 .statusCode(404);
 
-        System.out.println("✅ Producto inexistente no eliminado (404)");
+        System.out.println("[PASS] Producto inexistente no eliminado (404)");
     }
 }

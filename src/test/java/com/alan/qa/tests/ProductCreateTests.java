@@ -49,7 +49,7 @@ public class ProductCreateTests extends BaseTest {
         Assert.assertEquals(title, "Monitor LG 4K", "Título incorrecto");
         Assert.assertEquals(price.doubleValue(), 599.99, 0.01, "Precio incorrecto");
 
-        System.out.println("✅ Producto creado. ID: " + newProductId);
+        System.out.println("[PASS] Producto creado. ID: " + newProductId);
     }
 
     @Feature("Products")
@@ -72,7 +72,7 @@ public class ProductCreateTests extends BaseTest {
                 .then()
                 .statusCode(401);
 
-        System.out.println("✅ Acceso denegado sin token");
+        System.out.println("[PASS] Acceso denegado sin token");
     }
 
     @Feature("Products")
@@ -97,6 +97,6 @@ public class ProductCreateTests extends BaseTest {
                 .then()
                 .statusCode(400);
 
-        System.out.println("✅ Validación: Producto sin title rechazado");
+        System.out.println("[PASS] Validación: Producto sin title rechazado");
     }
 }
